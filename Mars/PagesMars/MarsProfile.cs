@@ -79,7 +79,7 @@ namespace Mars.PagesMars
             IWebElement skillAddButton = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
             skillAddButton.Click();
         }
-
+        //Getting new skill
         public string GetNewSkill(IWebDriver driver)
         {
             IWebElement newSkill = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
