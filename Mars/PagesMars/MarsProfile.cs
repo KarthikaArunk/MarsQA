@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Mars.UtilitiesMars;
-using NUnit.Framework;
 
 namespace Mars.PagesMars
 {
     public class MarsProfile
     {
-
+        //Locate Skill Tab
         public void LocateSkillTab(IWebDriver driver)
         {
             //Locate Skill tab
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
+           
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]")));
             
@@ -25,6 +17,8 @@ namespace Mars.PagesMars
             skillTab.Click();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
         }
+
+        //Adding New Skill
         public void AddNewSkill(IWebDriver driver)
         {
             //Locate Add New Button in Skill tab and click on it
@@ -45,7 +39,6 @@ namespace Mars.PagesMars
             var popup = driver.FindElement(By.XPath("/html/body/div[1]/a"));
             popup.Click();
 
-            driver.Quit();
 
         }
 
@@ -56,23 +49,27 @@ namespace Mars.PagesMars
             return newSkill.Text;
         }
 
+        //Getting new skill level
         public string GetNewSkillLevel(IWebDriver driver)
         {
             IWebElement newSkillLevel = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
             return newSkillLevel.Text;
         }
 
-
+        //Locate Language Tab 
         public void LocateLanguageTab(IWebDriver driver)
          {
             //Locate Language Tab and click on it
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
-            
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]")));
+
             IWebElement languageTab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));
             languageTab.Click();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
          }
 
+         //Adding New Language
         public void AddNewLanguage(IWebDriver driver)
          {
             //Locate Add New button and click on it
@@ -81,6 +78,9 @@ namespace Mars.PagesMars
             addNewLanguageButton.Click();
 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 3));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[1]/input")));
 
             //Locate Language textbox
             IWebElement languageTextBox = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[1]/input"));
@@ -99,77 +99,34 @@ namespace Mars.PagesMars
             popup.Click();
         }
 
+        //Getting new language
         public string getLanguage(IWebDriver driver)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
             IWebElement language = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
             return language.Text;
         }
-        //public void LanguageAndLevel(IWebDriver driver)
-        // {
-        //    IWebElement language = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
-        //    Assert.That(language.Text == "English", "Acutal language and expected language doesn't match");
-
-        //    IWebElement langLevel = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
-        //    Assert.That(langLevel.Text == "Basic", "Actual level and expected level doesn't match");
-
-        //}
+        
+        //Getting language level
         public string getLangaugeLevel(IWebDriver driver)
         {
             IWebElement langLevel = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
             return langLevel.Text;
         }
-        //public void LocateSkillTab(IWebDriver driver)
-        // {
-        //    //Locate Skill tab
-        //    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
-        //    IWebElement skillTab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
-        //    skillTab.Click();
-        //    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-        // }
-        //public void AddNewSkill(IWebDriver driver)
-        // {
-        //    //Locate Add New Button in Skill tab and click on it
-        //    driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div")).Click();
-
-        //    //Locate Skill Textbox
-        //    IWebElement skillTextbox = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[1]/input"));
-        //    skillTextbox.SendKeys("Painting");
-
-        //    //Locate Skill Level
-        //    IWebElement skillLevel = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select"));
-        //    skillLevel.SendKeys("Beginner");
-
-        //    //Locate Add Button In Skill Tab
-        //    IWebElement skillAddButton = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
-        //    skillAddButton.Click();
-
-        //    var popup = driver.FindElement(By.XPath("/html/body/div[1]/a"));
-        //    popup.Click();
-
-        //    //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-        // }
-
-        //Getting new skill
-        //public string GetNewSkill(IWebDriver driver)
-        // {
-        //    IWebElement newSkill = driver.FindElement(By.XPath("/html/body/div[1]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
-        //    return newSkill.Text;
-        // }
-
-        //public string GetNewSkillLevel(IWebDriver driver)
-        // {
-        //    IWebElement newSkillLevel = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
-        //    return newSkillLevel.Text;
-        // }
-          
+        
+        //Locate Education Tab                 
         public void LocateEducationTab(IWebDriver driver)
          {
             //Locate Education Tab
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[3]")));
             IWebElement educationTab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[3]"));
             educationTab.Click();
          }
+
+        //Adding New Education
+
         public void AddNewEducation(IWebDriver driver)
          {
             //Locate Add New Button in Education Tab and Click on it
@@ -202,43 +159,55 @@ namespace Mars.PagesMars
             var popup = driver.FindElement(By.XPath("/html/body/div[1]/a"));
             popup.Click();
         }
+
+        //Getting countryname
         public string getCountry(IWebDriver driver)
          {
             IWebElement getCountry = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[1]"));
             return getCountry.Text;
          }
           
+        //Getting University
         public string getUniversity(IWebDriver driver)
          {
             IWebElement getUniversity = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[2]"));
             return getUniversity.Text;
          }
-           
+          
+        //Getting Title
         public string getTitle(IWebDriver driver)
          {
             IWebElement getTitle = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[3]"));
             return getTitle.Text;
          }
 
+        //Getting Degree
         public string getDegree(IWebDriver driver)
          {
             IWebElement getDegree = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[4]"));
             return getDegree.Text;
          }
+        
+        //Getting Year
         public string getYear(IWebDriver driver)
          {
             IWebElement getYear = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[5]"));
             return getYear.Text;
          }
 
-         //Add New Certification
+        //Locate Certification Tab
         public void LocateCertificationTab(IWebDriver driver)
          {
             //Locate Certification Tab
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]")));
             IWebElement certificationTab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]"));
             certificationTab.Click();
          }
+
+        //Add New Certification
         public void AddNewCertification(IWebDriver driver)
          {
             
@@ -265,17 +234,21 @@ namespace Mars.PagesMars
             popup.Click();
         }
 
+        //Getting Certificate Name
         public string getCertificate(IWebDriver driver)
          {
             IWebElement getCertiname = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody/tr/td[1]"));
             return getCertiname.Text;
          }
 
+        //Getting Certificate From
         public string getCertificateFrom(IWebDriver driver)
          {
             IWebElement getCertifrom = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody/tr/td[2]"));
             return getCertifrom.Text;
          }
+
+        //Getting Certificate Year
         public string getCertificationYear(IWebDriver driver)
          {
             IWebElement getCertiYear = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody/tr/td[3]"));
