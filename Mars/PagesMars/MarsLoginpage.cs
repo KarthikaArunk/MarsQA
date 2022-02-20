@@ -1,39 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-
-
 
 
 namespace Mars.PagesMars
 {
-  public class MarsLoginpage
+    public class MarsLoginpage
     {
-        public void MarsLogin(IWebDriver driver)
-         {
-            //open chrome browser
-            driver.Manage().Window.Maximize();
-
-            //Launch MarsQA portal
-            driver.Navigate().GoToUrl("http://localhost:5000");
-
-            //Locate SignIn Button and Click on it
-            IWebElement signInButton = driver.FindElement(By.XPath("//*[@id='home']/div/div/div[1]/div/a"));
-            signInButton.Click();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-
-            //Identify Email textbox and enter valid eamil
-            driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[1]/input")).SendKeys("karthika9@gmail.com");
-            
-            //Identify Password textbox and enter valid password
-            driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[2]/input")).SendKeys("P@ssword");
-            
-            //Identify Login button and click on it
-            driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[4]/button")).Click();
+        IWebDriver driver;
+        public MarsLoginpage(IWebDriver webDriver)
+        {
+            driver= webDriver;
         }
+              
+         
+        private IWebElement SignInBtn => driver.FindElement(By.XPath("//*[@id='home']/div/div/div[1]/div/a"));
+
+        private IWebElement EmailTxt => driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[1]/input"));
+
+        private IWebElement PasswordTxt => driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[2]/input"));
+
+        private IWebElement LoginBtn => driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[4]/button"));
+
+        public void MarsLogin()
+        {
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl("http://localhost:5000");
+            SignInBtn.Click();
+
+            EmailTxt.SendKeys("karthika9@gmail.com");
+
+            PasswordTxt.SendKeys("P@ssword");
+            
+            LoginBtn.Click();
+        }
+
     }
+
 }
